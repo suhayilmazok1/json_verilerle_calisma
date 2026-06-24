@@ -56,9 +56,22 @@ class _HomeScreenState extends State<HomeScreen> {
             ? Text("veriler yükleniyor...")
             : Column(
                 children: [
-                  ElevatedButton(
-                    onPressed: _resetFilter,
-                    child: Text("Tüm Ürünler"),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: ElevatedButton(
+                      onPressed: _resetFilter,
+                      style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.amber, // Butonun arka plan rengi
+                      foregroundColor: Colors.white, // Yazı rengi
+                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15), // İç boşluk
+                      elevation: 5, // Gölge yüksekliği
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15), // Köşeleri yuvarlatma
+                      ),
+                    ),
+                      child: Text("Tüm Ürünler")
+                      
+                    ),
                   ),
                   _kategorilerView(),
                   Expanded(child: _urunlerView()),
@@ -72,17 +85,15 @@ class _HomeScreenState extends State<HomeScreen> {
   return ListView.separated(
     itemCount: _urunler.length,
     itemBuilder: (context, index) {
-      final Urunler urun = _urunler[index]; // O an çizilen veya tıklanan ürün (Örn: Kiraz)
-
+      final Urunler urun = _urunler[index]; 
       return ListTile(
-        // ListTile'a tıklanabilme özelliği ekliyoruz
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => TestPage(
-                title: urun.isim!,     // JSON'daki ismi gönderiyoruz
-                imageUrl: urun.resim!, // JSON'daki resim linkini gönderiyoruz
+                title: urun.isim!,    
+                imageUrl: urun.resim!, 
               ),
             ),
           );
@@ -135,7 +146,7 @@ class TestPage extends StatefulWidget {
     super.key, 
     required this.title, 
     required this.imageUrl,
-    
+
   });
 
   @override
