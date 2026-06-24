@@ -1,0 +1,90 @@
+{
+    "urunler": [
+      {
+        "id": 1,
+        "kategori": 1,
+        "isim": "Kiraz",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgF8ds-Sm8GZcbhQJ3loBREb6bD10oxUI75iQ9nfRTRmF87oe86RwDFGA&s=10"
+      },
+      {
+        "id": 2,
+        "kategori": 1,
+        "isim": "Elma",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTyQYkt2a9BfmRZcxCj-WcwTQxVpHrYOBkIlQUH-z-ZqUe8pFooHA6Gwo&s=10"
+      },
+      {
+        "id": 4,
+        "kategori": 1,
+        "isim": "Şeftali",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU1bDaoTkvpg9LAmZZ_TT2iGtZfGRHbLonjPTbOcuotu0saKJnJG1HWPA&s=10"
+      },
+      {
+        "id": 5,
+        "kategori": 2,
+        "isim": "Dolma",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLHFZUIPiaIYArBf4dQWUEPnpCzfVuTzCXmGY8e3ogmqq4pkb4SP0tSUCQ&s=10"
+      },
+      {
+        "id": 6,
+        "kategori": 2,
+        "isim": "Menemen",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUCYbD4GFV4dG2PLD129qUnrtNPi-cfH78V3ctnns0zALjU2AAnnch1526&s=10"
+      },
+      {
+        "id": 7,
+        "kategori": 1,
+        "isim": "Erik",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJLx-AkUrTRgXABII0irMVW7ygVTW6ix2Q95ZVauR6pb0SJAdWoaTTtZg&s=10"
+      },
+      {
+        "id": 8,
+        "kategori": 2,
+        "isim": "Omlet",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu7dikFXL8IhVztPwzeg4XpJhGGhz6lRu2pF-ZgriGjrOWBDgfhTkAu39D&s=10"
+      },
+      {
+        "id": 9,
+        "kategori": 1,
+        "isim": "Çağla",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHUvIiVLIzfh_yDeDLhvAJnT1Ne6RpEOYisHfueq73L6shGmB_XMrdKHEM&s=10"
+      },
+      {
+        "id": 15,
+        "kategori": 2,
+        "isim": "Cacık",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrcG9K-7YiC61ZnGCU6JF76iDa4NejiMeS0anVr1xySptf5-etHiGGga5U&s=10"
+      },
+      {
+        "id": 16,
+        "kategori": 3,
+        "isim": "Süt",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRwL-wv4s0Qtkxl5EItPEmDaYbhEsVdVl8pflEcsY5w0Zz2_TV0dOsx-mg&s=10"
+      },
+      {
+        "id": 19,
+        "kategori": 3,
+        "isim": "Çay",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIeLeKGwrvO2Q0jjX0-QsJMrZ8Wd75CMQTRNhzIF5Kvo0ML54e9OcELNah&s=10"
+      },
+      {
+        "id": 20,
+        "kategori": 3,
+        "isim": "Limonata",
+        "resim": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfsMyLygtlNRIjmxQFho7jPzt_HmpGzLGkBim2XKrCOI_RczLIfBimkc4&s=10"
+      }
+    ],
+    "kategoriler": [
+      {
+        "id": 1,
+        "isim": "Meyveler"
+      },
+      {
+        "id": 2,
+        "isim": "Yemekler"
+      },
+      {
+        "id": 3,
+        "isim": "İçecekler"
+      }
+    ]
+  }

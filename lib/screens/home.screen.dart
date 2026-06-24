@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:ornek_proje/models/urunler.model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,71 +12,148 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int counter = 0;
+  UrunlerModel? _veriler;
 
-  void _incrementCounter() {
-    counter++;
+  List<Urunler> _urunler = [];
+
+  void _loadData() async {
+    try {
+      final dataString = await rootBundle.loadString("asset/files/data.json");
+      final dataJson = jsonDecode(dataString);
+      _veriler = UrunlerModel.fromJson(dataJson);
+      _urunler = _veriler!.urunler!;
+    } catch (e) {
+      print(e.toString());
+    } finally {
+      setState(() {});
+    }
+  }
+
+  void _filterData(int id) {
+    _urunler = _veriler!.urunler!
+        .where((verilerEleman) => verilerEleman.kategori == id)
+        .toList();
+
     setState(() {});
   }
 
-  void _resetCounter() {
-    counter = 0;
+  void _resetFilter() {
+    _urunler = _veriler!.urunler!;
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    _loadData();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF191919),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [                
+        child: _veriler == null
+            ? Text("veriler yükleniyor...")
+            : Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: _resetFilter,
+                    child: Text("Tüm Ürünler"),
+                  ),
+                  _kategorilerView(),
+                  Expanded(child: _urunlerView()),
+                ],
+              ),
+      ),
+    );
+  }
 
-                Image.asset("asset/images/zikirmatik.png", width: 300),
-                Positioned(top: 53,
-                 right: 80,
-                  child: _counterText()),
-                Positioned(bottom: 30, child: _incrementButton()),
-                Positioned(right: 76, bottom: 114, child: _resetButton()),
-              ],
+  ListView _urunlerView() {
+  return ListView.separated(
+    itemCount: _urunler.length,
+    itemBuilder: (context, index) {
+      final Urunler urun = _urunler[index]; // O an çizilen veya tıklanan ürün (Örn: Kiraz)
+
+      return ListTile(
+        // ListTile'a tıklanabilme özelliği ekliyoruz
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TestPage(
+                title: urun.isim!,     // JSON'daki ismi gönderiyoruz
+                imageUrl: urun.resim!, // JSON'daki resim linkini gönderiyoruz
+              ),
             ),
-          ],
+          );
+        },
+        leading: Image.network(
+          urun.resim!,
+          width: 100,
+          height: 50,
+          fit: BoxFit.cover,
         ),
-      ),
-    );
-  }
+        title: Text(urun.isim!),
+      );
+    },
+    separatorBuilder: (context, index) => const Divider(height: 10),
+  );
+}
 
-  GestureDetector _resetButton() {
-    return GestureDetector(
-      onTap: () => _resetCounter(),
-      child: Container(
-        width: 30,
-        height: 30,
-        decoration: BoxDecoration(shape: BoxShape.circle),
-      ),
-    );
-  }
-
-  GestureDetector _incrementButton() {
-    return GestureDetector(
-      behavior: HitTestBehavior.deferToChild,
-      onTap: () => _incrementCounter(),
-      child: Container(
-        width: 90,
-        height: 90,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(40)),
-      ),
-    );
-  }
-
-  Text _counterText() {
-    return Text(
-      "$counter",
-      style: TextStyle(fontSize: 50, color: Colors.white),
+  Row _kategorilerView() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(_veriler!.kategoriler!.length, (index) {
+        final kategori = _veriler!.kategoriler![index];
+        return GestureDetector(
+          onTap: () => _filterData(kategori.id ?? 0),
+          child: Container(
+            padding: EdgeInsets.all(10),
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: Colors.black38,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(kategori.isim ?? "N/A"),
+          ),
+        );
+      }),
     );
   }
 }
+
+Future<void> navigateToPush(BuildContext context, Widget page) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+}
+
+class TestPage extends StatefulWidget {
+
+  final String title;
+  final String imageUrl;
+
+  const TestPage({
+    super.key, 
+    required this.title, 
+    required this.imageUrl,
+    
+  });
+
+  @override
+  State<TestPage> createState() => _TestPageState();
+}
+
+class _TestPageState extends State<TestPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.title)),
+      body: Center(
+        child: Image.network(widget.imageUrl,),
+      ));
+  }
+}
+// String fonksiyonlar
+// String to num dönüşümleri
+// int double fonksiyonları
+// liste fonskiyonları
+// methodlar , classlar
