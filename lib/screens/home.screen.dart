@@ -51,32 +51,34 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _veriler == null
-            ? Text("veriler yükleniyor...")
-            : Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10),
-                    child: ElevatedButton(
-                      onPressed: _resetFilter,
-                      style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber, // Butonun arka plan rengi
-                      foregroundColor: Colors.white, // Yazı rengi
-                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15), // İç boşluk
-                      elevation: 5, // Gölge yüksekliği
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15), // Köşeleri yuvarlatma
+      body: SafeArea(
+        child: Center(
+          child: _veriler == null
+              ? Text("veriler yükleniyor...")
+              : Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: ElevatedButton(
+                        onPressed: _resetFilter,
+                        style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.amber, // Butonun arka plan rengi
+                        foregroundColor: Colors.white, // Yazı rengi
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15), // İç boşluk
+                        elevation: 5, // Gölge yüksekliği
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15), // Köşeleri yuvarlatma
+                        ),
+                      ),
+                        child: Text("Tüm Ürünler")
+                        
                       ),
                     ),
-                      child: Text("Tüm Ürünler")
-                      
-                    ),
-                  ),
-                  _kategorilerView(),
-                  Expanded(child: _urunlerView()),
-                ],
-              ),
+                    _kategorilerView(),
+                    Expanded(child: _urunlerView()),
+                  ],
+                ),
+        ),
       ),
     );
   }
